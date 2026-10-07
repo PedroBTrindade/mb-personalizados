@@ -1,26 +1,968 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* =========================================
+     PALETA PRINCIPAL
+     Lilás + Verde Sálvia + Dourado Champagne
+     ========================================= */
+
+  /* Lilás */
+  --lilas: #B9A8C9;
+  --lilas-claro: #DCCFE5;
+  --lilas-escuro: #89759D;
+
+  /* Verde */
+  --verde: #AFC9BB;
+  --verde-claro: #DDEBE4;
+  --verde-escuro: #668878;
+
+  /* Dourado suave / champagne */
+  --dourado: #C9AE70;
+  --dourado-claro: #E6D6A8;
+  --dourado-elegante: #A68A4F;
+
+  /* Fundos */
+  --fundo: #F3F8F5;
+  --fundo-verde: #E7F0EB;
+  --fundo-lilas: #F3EEF6;
+
+  /* Neutros */
+  --creme: #FFFDFC;
+  --creme-escuro: #F5F0F4;
+
+  --texto: #4D4650;
+  --texto-suave: #756D78;
+
+  --branco: #FFFFFF;
+  --borda: #DCE4DF;
+
+  /* Layout */
+  --container: 1200px;
+  --gutter: 24px;
+  --lateral: max(var(--gutter), calc((100% - var(--container)) / 2));
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* =========================================
+   RESET
+   ========================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+  color: var(--texto);
+  background: var(--fundo);
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+svg {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+:focus-visible {
+  outline: 2px solid var(--dourado);
+  outline-offset: 3px;
+}
+
+
+/* =========================================
+   HEADER
+   Verde sálvia com toque lilás muito suave
+   ========================================= */
+
+.header {
+  display: grid;
+  grid-template-columns: 180px 1fr auto;
+  align-items: center;
+  column-gap: 32px;
+
+  padding: 16px var(--lateral);
+
+  background:
+    linear-gradient(
+      135deg,
+      #C8DCD1 0%,
+      #BFD5C9 48%,
+      #C9D7CF 100%
+    );
+
+  box-shadow:
+    0 4px 18px rgba(74, 100, 87, 0.10);
+}
+
+.logo {
+  grid-row: 1 / 3;
+  width: 150px;
+  height: 150px;
+  border: 0;
+  background: transparent;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+/* =========================================
+   MARCA
+   ========================================= */
+
+.brand {
+  grid-column: 2 / 4;
+  grid-row: 1;
+  align-self: end;
+  text-align: left;
+  transform: none;
+}
+
+.brand-title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.brand-title svg {
+  color: var(--dourado-elegante);
+  font-size: 34px;
+  stroke-width: 1.4;
+}
+
+.brand-title span {
+  font-family: var(--font-cinzel), Georgia, serif;
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: 1px;
+
+  /*
+    Dourado menos amarelo.
+    Mistura champagne + ouro suave.
+  */
+  background:
+    linear-gradient(
+      180deg,
+      #E9DDB8 0%,
+      #C9AE70 52%,
+      #A68A4F 100%
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.brand p {
+  margin-top: 6px;
+  color: #6F7F75;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+}
+
+.brand p b {
+  color: var(--dourado-elegante);
+  font-weight: 700;
+}
+
+
+/* =========================================
+   BUSCA
+   ========================================= */
+
+.search {
+  grid-column: 2;
+  grid-row: 2;
+  position: relative;
+  align-self: start;
+  width: 100%;
+  max-width: 560px;
+  margin-top: 16px;
+}
+
+.search input {
+  width: 100%;
+  height: 44px;
+  padding: 0 50px 0 18px;
+
+  border: 1px solid rgba(137, 117, 157, 0.12);
+  border-radius: 22px;
+  outline: none;
+
+  background: rgba(255, 253, 252, 0.92);
+  color: var(--texto);
+
+  box-shadow:
+    0 2px 8px rgba(70, 92, 80, 0.10);
+
+  font: inherit;
+  font-size: 14px;
+
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.search input:focus {
+  border-color: var(--lilas);
+
+  background: var(--branco);
+
+  box-shadow:
+    0 0 0 3px rgba(185, 168, 201, 0.18);
+}
+
+.search input::placeholder {
+  color: #8A818D;
+}
+
+.search button {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+
+  display: flex;
+  padding: 0;
+
+  border: 0;
+  background: none;
+
+  color: var(--dourado-elegante);
+
+  font-size: 22px;
+  cursor: pointer;
+
+  transform: translateY(-50%);
+
+  transition: color 0.2s ease;
+}
+
+.search button:hover {
+  color: var(--lilas-escuro);
+}
+
+
+/* =========================================
+   AÇÕES
+   ========================================= */
+
+.actions {
+  grid-column: 3;
+  grid-row: 2;
+
+  align-self: start;
+
+  display: flex;
+  align-items: center;
+
+  gap: 22px;
+  height: 44px;
+  margin-top: 16px;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #64776C;
+
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.account svg {
+  color: var(--dourado-elegante);
+  font-size: 22px;
+}
+
+.cart {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  color: var(--dourado-elegante);
+  font-size: 26px;
+}
+
+.cart span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+
+  border-radius: 10px;
+
+  background: var(--dourado);
+
+  color: #FFFFFF;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+
+/* =========================================
+   MENU
+   Lilás suave, sem saturação pesada
+   ========================================= */
+
+.menu {
+  position: relative;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  height: 56px;
+  margin: 28px var(--lateral) 0;
+  padding: 0 16px;
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #AFA0BE 0%,
+      #B9A8C9 50%,
+      #AFA0BE 100%
+    );
+
+  box-shadow:
+    0 4px 14px rgba(93, 77, 108, 0.12);
+}
+
+.menu a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 9px 18px;
+
+  border-radius: 20px;
+
+  color: #FFFDFC;
+
+  font-weight: 600;
+  font-size: 14px;
+
+  white-space: nowrap;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.menu svg {
+  color: var(--dourado-claro);
+  font-size: 22px;
+  stroke-width: 1.4;
+}
+
+.menu a:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: #FFFDFB;
+}
+
+.menu a.active,
+.menu a[aria-current="page"] {
+  background: rgba(255, 255, 255, 0.20);
+
+  color: #FFFDFB;
+
+  box-shadow:
+    inset 0 -2px 0 var(--dourado-claro);
+}
+
+
+/* =========================================
+   CONTEÚDO
+   ========================================= */
+
+.page-title {
+  padding: 28px var(--lateral) 16px;
+
+  color: var(--lilas-escuro);
+
+  text-align: center;
+
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin: 0 var(--lateral);
+  padding: 14px 0;
+
+  border-top: 1px solid var(--borda);
+
+  color: var(--texto-suave);
+
+  font-size: 13px;
+}
+
+.selects,
+.pager {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+select {
+  height: 36px;
+  padding: 0 14px;
+
+  border: 1px solid var(--borda);
+  border-radius: 18px;
+
+  background: var(--branco);
+  color: var(--texto);
+
+  box-shadow:
+    0 1px 3px rgba(70, 92, 80, 0.06);
+
+  font: inherit;
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+select.small {
+  width: 56px;
+  padding: 0 10px;
+}
+
+.dots {
+  display: none;
+}
+
+.pager button {
+  padding: 0 8px;
+
+  border: 0;
+  background: none;
+
+  color: var(--lilas-escuro);
+
+  font-size: 26px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.pager button:hover {
+  color: var(--dourado-elegante);
+}
+
+
+/* =========================================
+   LAYOUT
+   ========================================= */
+
+.layout {
+  display: flex;
+
+  gap: 40px;
+
+  padding: 16px var(--lateral) 56px;
+}
+
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+
+  color: var(--texto-suave);
+
+  font-size: 13px;
+}
+
+.sidebar h3 {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin: 14px 0;
+
+  color: var(--lilas-escuro);
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sidebar h3::before {
+  content: '';
+
+  width: 10px;
+  height: 2px;
+
+  border-radius: 2px;
+
+  background: var(--dourado);
+}
+
+.sidebar li {
+  list-style: none;
+  margin-bottom: 12px;
+}
+
+.sidebar li a {
+  transition: color 0.2s ease;
+}
+
+.sidebar li a:hover {
+  color: var(--lilas-escuro);
+}
+
+.sidebar .sep {
+  margin-top: 24px;
+  padding-top: 20px;
+
+  border-top: 1px solid var(--borda);
+}
+
+
+/* =========================================
+   PRODUTOS
+   ========================================= */
+
+.grid {
+  flex: 1;
+  min-width: 0;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 28px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  border-radius: 14px;
+
+  background: var(--branco);
+
+  box-shadow:
+    0 2px 10px rgba(70, 92, 80, 0.06);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 10px 24px rgba(70, 92, 80, 0.11);
+}
+
+.card h4 {
+  margin: 14px 16px 0;
+
+  color: var(--lilas-escuro);
+
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.price {
+  margin: 6px 16px 0;
+
+  color: var(--verde-escuro);
+
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.price-old {
+  margin-left: 8px;
+
+  color: var(--texto-suave);
+
+  font-size: 13px;
+  font-weight: 400;
+
+  text-decoration: line-through;
+}
+
+.parcelas {
+  margin: 2px 16px 0;
+
+  color: var(--texto-suave);
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   BOTÃO PERSONALIZAR
+   ========================================= */
+
+.btn-personalizar {
+  margin: 14px 16px 16px;
+  padding: 11px 16px;
+
+  border: 0;
+  border-radius: 22px;
+
+  /*
+    Verde sálvia médio.
+    O lilás fica nos textos e títulos,
+    criando alternância sem excesso.
+  */
+  background: var(--verde-escuro);
+
+  color: #FFFDFB;
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+
+  text-align: center;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn-personalizar:hover {
+  background: #789B89;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================
+   THUMB DOS PRODUTOS
+   Verde + lilás quase imperceptíveis
+   ========================================= */
+
+.thumb {
+  position: relative;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  height: 300px;
+
+  overflow: hidden;
+
+  background: var(--creme);
+}
+
+.t1 {
+  background:
+    linear-gradient(
+      145deg,
+      #F2F7F4 0%,
+      #E2EEE7 55%,
+      #EEE9F3 100%
+    );
+}
+
+.t2 {
+  background:
+    linear-gradient(
+      145deg,
+      #F3F8F5 0%,
+      #E5EFE9 50%,
+      #F0EAF4 100%
+    );
+}
+
+.t3 {
+  background:
+    linear-gradient(
+      145deg,
+      #F5F9F6 0%,
+      #E8F0EB 52%,
+      #EDE7F1 100%
+    );
+}
+
+
+/* =========================================
+   BADGE
+   ========================================= */
+
+.badge {
+  position: absolute;
+
+  top: 12px;
+  left: 12px;
+
+  padding: 6px 9px;
+
+  border-radius: 6px;
+
+  background: var(--lilas);
+
+  color: #FFFFFF;
+
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.15;
+
+  box-shadow:
+    0 2px 5px rgba(93, 77, 108, 0.12);
+}
+
+
+/* =========================================
+   PRODUTO / GARRAFA
+   ========================================= */
+
+.bottle {
+  width: 96px;
+  height: 270px;
+
+  margin-bottom: -50px;
+
+  border-radius: 18px 18px 8px 8px;
+
+  background:
+    linear-gradient(
+      #D8BF67 0 20%,
+      #FFFDFC 20%
+    );
+
+  box-shadow:
+    0 6px 14px rgba(70, 92, 80, 0.14);
+}
+
+.bottle.c2 {
+  background:
+    linear-gradient(
+      #D99AAA 0 20%,
+      #FFFDFC 20%
+    );
+}
+
+.bottle.c3 {
+  background:
+    linear-gradient(
+      #B9A8C9 0 20%,
+      #FFFDFC 20%
+    );
+}
+
+
+/* =========================================
+   COOKIES
+   ========================================= */
+
+.cookies {
+  position: fixed;
+
+  left: 50%;
+  bottom: 12px;
+
+  z-index: 50;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  width: min(calc(100% - 24px), 560px);
+
+  padding: 12px 14px;
+
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+
+  background: rgba(255, 253, 252, 0.96);
+
+  color: var(--texto);
+
+  box-shadow:
+    0 4px 18px rgba(70, 92, 80, 0.12);
+
+  font-size: 12px;
+  line-height: 1.4;
+
+  transform: translateX(-50%);
+}
+
+.cookie-icon {
+  color: var(--dourado-elegante);
+  font-size: 30px;
+}
+
+.cookies button {
+  flex-shrink: 0;
+
+  padding: 10px 18px;
+
+  border: 0;
+  border-radius: 22px;
+
+  background: var(--lilas-escuro);
+
+  color: #FFFFFF;
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.cookies button:hover {
+  background: #9783AA;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .menu {
+    flex-wrap: wrap;
+
+    height: auto;
+
+    padding: 8px 12px;
+
+    border-radius: 22px;
+  }
+}
+
+
+@media (max-width: 900px) {
+  .header {
+    grid-template-columns: 1fr;
+
+    row-gap: 12px;
+
+    justify-items: center;
+
+    padding: 16px;
+  }
+
+  .logo {
+    grid-row: auto;
+
+    width: 110px;
+    height: 110px;
+  }
+
+  .brand,
+  .search,
+  .actions {
+    grid-column: 1;
+    grid-row: auto;
+
+    margin-top: 0;
+  }
+
+  .brand {
+    text-align: center;
+  }
+
+  .brand-title {
+    justify-content: center;
+  }
+
+  .brand-title span {
+    font-size: 26px;
+  }
+
+  .brand-title svg {
+    font-size: 24px;
+  }
+
+  .menu {
+    margin: 16px 16px 0;
+  }
+
+  .menu a {
+    padding: 7px 10px;
+    font-size: 13px;
+  }
+
+  .toolbar {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .layout {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .grid {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(160px, 1fr)
+    );
+
+    gap: 16px;
+  }
+
+  .thumb {
+    height: 220px;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
 }

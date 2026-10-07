@@ -1,0 +1,86 @@
+/* Estilos do login e do painel de admin */
+
+.account-btn { border: 0; background: none; cursor: pointer; font: inherit; font-weight: 700; font-size: 13px; }
+.account-btn:hover, .actions .account:hover { color: var(--dourado); }
+
+/* Botões */
+.btn-primario, .btn-sec, .btn-perigo {
+  display: inline-block; padding: 10px 18px; border-radius: 22px; border: 1px solid transparent;
+  font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; text-align: center;
+  transition: background-color .2s ease, opacity .2s ease;
+}
+.btn-primario { background: var(--marrom); color: var(--dourado-claro); }
+.btn-primario:hover { background: var(--marrom-claro); }
+.btn-primario:disabled { opacity: .6; cursor: wait; }
+.btn-sec { background: var(--branco); color: var(--marrom); border-color: var(--borda); }
+.btn-sec:hover { background: var(--creme-escuro); }
+.btn-perigo { background: var(--branco); color: #a3281d; border-color: #e6b8b3; }
+.btn-perigo:hover { background: #fbeceb; }
+
+.msg-erro { color: #a3281d; background: #fbeceb; border-radius: 8px; padding: 10px 12px; font-size: 13px; }
+.msg-ok { color: #1f6b43; background: #e8f5ee; border-radius: 8px; padding: 10px 12px; font-size: 13px; }
+.dica { color: var(--texto-suave); font-size: 12px; }
+
+/* Login / cadastro / minha conta */
+.auth-wrap { display: flex; justify-content: center; padding: 48px var(--gutter) 72px; }
+.auth-card { width: 100%; max-width: 420px; background: var(--branco); border-radius: 16px; padding: 32px; box-shadow: 0 6px 24px rgba(62,36,26,.1); }
+.auth-card h1 { color: var(--marrom); font-size: 26px; }
+.auth-sub { color: var(--texto-suave); font-size: 14px; margin: 4px 0 20px; }
+.auth-form { display: flex; flex-direction: column; gap: 14px; }
+.auth-form label { display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: var(--marrom); }
+.auth-form input { height: 42px; padding: 0 14px; border: 1px solid var(--borda); border-radius: 10px; font: inherit; font-size: 14px; background: var(--creme); }
+.auth-form input:focus { outline: 2px solid var(--dourado); border-color: transparent; }
+.auth-form small { font-weight: 400; color: var(--texto-suave); }
+.auth-troca { margin-top: 18px; font-size: 13px; text-align: center; color: var(--texto-suave); }
+.auth-troca a { color: var(--dourado-elegante); font-weight: 700; }
+
+/* Painel */
+.admin { display: flex; gap: 32px; padding: 32px var(--lateral) 64px; align-items: flex-start; }
+.admin-nav { width: 200px; flex-shrink: 0; display: flex; flex-direction: column; gap: 6px; background: var(--branco); border-radius: 14px; padding: 18px; box-shadow: 0 2px 10px rgba(62,36,26,.07); }
+.admin-nav h2 { color: var(--marrom); font-size: 16px; margin-bottom: 8px; }
+.admin-nav a { padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 600; color: var(--texto); }
+.admin-nav a:hover { background: var(--creme-escuro); }
+.admin-main { flex: 1; min-width: 0; }
+.admin-main h1 { color: var(--marrom); font-size: 24px; margin-bottom: 16px; }
+.admin-topo { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; }
+.admin-topo h1 { margin: 0; }
+
+.tabela-wrap { overflow-x: auto; background: var(--branco); border-radius: 14px; box-shadow: 0 2px 10px rgba(62,36,26,.07); }
+.tabela { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tabela th { text-align: left; padding: 12px 14px; font-size: 12px; text-transform: uppercase; letter-spacing: .4px; color: var(--texto-suave); border-bottom: 1px solid var(--borda); }
+.tabela td { padding: 10px 14px; border-bottom: 1px solid var(--borda); vertical-align: middle; }
+.tabela small { display: block; color: var(--texto-suave); font-size: 12px; }
+.tabela .status.ativa { color: #1f6b43; font-weight: 700; }
+.tabela .status.agendada { color: var(--dourado-elegante); font-weight: 700; }
+.tabela .status.encerrada { color: var(--texto-suave); }
+.mini { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; display: block; }
+.mini.vazio { background: var(--creme-escuro); }
+.acoes { display: flex; gap: 6px; flex-wrap: wrap; }
+.acoes .btn-sec, .acoes .btn-perigo { padding: 6px 12px; font-size: 12px; }
+
+/* Formulário de produto */
+.admin-form { display: flex; flex-direction: column; gap: 16px; background: var(--branco); border-radius: 14px; padding: 24px; box-shadow: 0 2px 10px rgba(62,36,26,.07); }
+.admin-form .campo { display: flex; flex-direction: column; gap: 6px; flex: 1; font-size: 13px; font-weight: 600; color: var(--marrom); }
+.admin-form input:not([type="checkbox"]):not([type="file"]), .admin-form select, .admin-form textarea {
+  padding: 10px 12px; border: 1px solid var(--borda); border-radius: 10px; font: inherit; font-size: 14px; background: var(--creme); width: 100%;
+}
+.admin-form input:not([type="checkbox"]):not([type="file"]), .admin-form select { height: 42px; }
+.admin-form :is(input, select, textarea):focus { outline: 2px solid var(--dourado); border-color: transparent; }
+.admin-form .linha { display: flex; gap: 16px; }
+.admin-form .bloco { border: 1px solid var(--borda); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.admin-form legend { padding: 0 8px; font-weight: 700; color: var(--marrom); font-size: 14px; }
+.admin-form .check { display: flex; gap: 8px; align-items: center; font-size: 14px; }
+.admin-form .linha-botoes { display: flex; gap: 10px; align-items: center; }
+.fotos { display: flex; flex-wrap: wrap; gap: 12px; }
+.foto { width: 120px; display: flex; flex-direction: column; gap: 4px; }
+.foto img { width: 120px; height: 120px; object-fit: cover; border-radius: 10px; border: 1px solid var(--borda); }
+.foto button { font: inherit; font-size: 11px; padding: 4px; border: 1px solid var(--borda); border-radius: 6px; background: var(--creme); cursor: pointer; }
+.foto .remover { color: #a3281d; }
+.selo-principal { font-size: 11px; font-weight: 700; text-align: center; padding: 4px; border-radius: 6px; background: var(--marrom); color: var(--dourado-claro); }
+
+@media (max-width: 900px) {
+  .admin { flex-direction: column; }
+  .admin-nav { width: 100%; flex-direction: row; flex-wrap: wrap; align-items: center; }
+  .admin-nav h2 { width: 100%; margin: 0; }
+  .admin-form .linha { flex-direction: column; }
+}

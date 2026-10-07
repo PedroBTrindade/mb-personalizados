@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"name": "app",
+			"path": "../../../../../Desktop/MicaFront/app"
+		},
+		{
+			"name": "mb-personalizados",
+			"path": ".."
+		},
+		{
+			"name": "components",
+			"path": "../../../../../Desktop/MicaFront/components"
+		},
+		{
+			"name": "data",
+			"path": "../../../../../Desktop/MicaFront/data"
+		},
+		{
+			"name": "lib",
+			"path": "../../../../../Desktop/MicaFront/lib"
+		},
+		{
+			"name": "supabase",
+			"path": "../../../../../Desktop/MicaFront/supabase"
+		}
+	],
+	"settings": {}
+}
